@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pörssisähkö</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-size: 18px;
+            text-align: center; /* Center text */
+            margin: 0; /* Remove default margin */
+        }
+        #priceList {
+            list-style-type: none; /* Remove bullets */
+            padding: 0; /* Remove default padding */
+        }
+        #priceList li:first-child {
+            font-size: 36px; /* Increased size for the first line */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Tuntihinta</h1>
+
+<ul id="priceList"></ul>
+<p id="currentTime"></p>
+
+<script>
+    // Function to fetch data from the API
+    async function fetchData() {
+        const response = await fetch('https://api.spot-hinta.fi/TodayAndDayForward');
+        const data = await response.json();
+        return data;
+    }
+
+    // Function to display only the current and future PriceWithTax values
+    async function displayPrices() {
+        const priceListElement = document.getElementById('priceList');
+        const data = await fetchData();
+
+        // Sort data based on DateTime
+        data.sort((a, b) => new Date(a.DateTime) - new Date(b.DateTime));
+
+        // Get the current time
+        const currentTime = new Date();
+        const oneHourBefore = new Date(currentTime);
+        oneHourBefore.setHours(currentTime.getHours() - 1);
+
+        // Filter out past prices and include one hour before the current time
+        const relevantPrices = data.filter(entry => new Date(entry.DateTime) >= oneHourBefore);
+
+        // Display PriceWithTax values with color coding and styling
+relevantPrices.forEach((entry, index) => {
+    const listItem = document.createElement('li');
+
+    if (index === 0) {
+        // For the first line, display only the numeric part and make it very big
+        const priceWithoutTax = Math.round(entry.PriceWithTax * 100); // Round to the nearest integer for cents
+
+        // Create a span element for the snt/kWh text
+        const unitSpan = document.createElement('span');
+        unitSpan.textContent = ' snt/kWh';
+        unitSpan.style.fontSize = '18px'; // Adjust font size for the unit
+
+        // Create a span element for the main number
+        const mainNumberSpan = document.createElement('span');
+        mainNumberSpan.textContent = `${priceWithoutTax}`;
+        mainNumberSpan.style.fontSize = '128px'; // Double font size for the first price line
+
+        // Append the main number and unit to the list item
+        listItem.appendChild(mainNumberSpan);
+        listItem.appendChild(unitSpan);
+    } else {
+        // For other lines, display only the time part of DateTime
+        const time = entry.DateTime.split('T')[1].split('+')[0].slice(0, -3); // Remove seconds
+        const formattedPrice = entry.PriceWithTax.toFixed(2);
+        listItem.textContent = `${time} ${formattedPrice}`;
+    }
+
+    // Set font color based on conditions
+    if (entry.PriceWithTax > 0.07) {
+        listItem.style.color = 'orange';
+
+        if (entry.PriceWithTax > 0.18) {
+            listItem.style.color = 'red';
+        }
+    } else if (entry.PriceWithTax < 0.03) {
+        listItem.style.color = 'green';
+    }
+
+    // Set font weight
+    listItem.style.fontWeight = 'bold';
+
+    priceListElement.appendChild(listItem);
+});
+
+    }
+
+    // Function to update the current time
+    function updateCurrentTime() {
+        const currentTimeElement = document.getElementById('currentTime');
+        const currentTime = new Date();
+        currentTimeElement.textContent = `${currentTime.toLocaleString()}`;
+    }
+
+    // Function to refresh the page every 60 seconds
+    function refreshPage() {
+        setInterval(() => {
+            location.reload();
+        }, 60000);
+    }
+
+    // Function to make the webpage fullscreen on Android devices
+    function goFullscreen() {
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        if (isAndroid) {
+            const body = document.body;
+            if (body.requestFullscreen) {
+                body.requestFullscreen();
+            } else if (body.mozRequestFullScreen) { /* Firefox */
+                body.mozRequestFullScreen();
+            } else if (body.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                body.webkitRequestFullscreen();
+            } else if (body.msRequestFullscreen) { /* IE/Edge */
+                body.msRequestFullscreen();
+            }
+        }
+    }
+
+    // Call the displayPrices function, make the page fullscreen (on Android devices), and start the interval for refreshing the page and updating time
+    window.onload = function () {
+        goFullscreen();
+        displayPrices();
+        refreshPage();
+        updateCurrentTime();
+        setInterval(updateCurrentTime, 1000); // Update time every second
+    };
+</script>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
