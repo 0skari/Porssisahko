@@ -5,7 +5,7 @@ Yksinkertainen verkkosivu, joka näyttää reaaliaikaisen ja verollisen pörssis
 
 
 
-## Sivu löytyy osoitteesta:
+## Verkkosivu löytyy osoitteesta:
 
 https://sähkö.pinarbo.org/
 
