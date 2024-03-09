@@ -23,6 +23,5 @@ Hinnat ovat selkeyden vuoksi värikoodattu:
 🟠 Alle 18snt/kWh
 ⚪ Alle 7snt/kWh
 🟢 Alle 3snt/kWh
-
 ```
 Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika.
