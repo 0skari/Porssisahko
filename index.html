@@ -28,6 +28,8 @@
 <ul id="priceList"></ul>
 <p id="currentTime"></p>
 
+<a href="https://github.com/Sopulo/Porssisahko">APUA!</a>
+
 <script>
     // Function to fetch data from the API
     async function fetchData() {
@@ -53,49 +55,49 @@
         const relevantPrices = data.filter(entry => new Date(entry.DateTime) >= oneHourBefore);
 
         // Display PriceWithTax values with color coding and styling
-relevantPrices.forEach((entry, index) => {
-    const listItem = document.createElement('li');
+        relevantPrices.forEach((entry, index) => {
+            const listItem = document.createElement('li');
 
-    if (index === 0) {
-        // For the first line, display only the numeric part and make it very big
-        const priceWithoutTax = Math.round(entry.PriceWithTax * 100); // Round to the nearest integer for cents
+            if (index === 0) {
+                // For the first line, display only the numeric part and make it very big
+                const priceWithoutTax = Math.round(entry.PriceWithTax * 100); // Round to the nearest integer for cents
 
-        // Create a span element for the snt/kWh text
-        const unitSpan = document.createElement('span');
-        unitSpan.textContent = ' snt/kWh';
-        unitSpan.style.fontSize = '18px'; // Adjust font size for the unit
+                // Create a span element for the snt/kWh text
+                const unitSpan = document.createElement('span');
+                unitSpan.textContent = ' snt/kWh';
+                unitSpan.style.fontSize = '18px'; // Adjust font size for the unit
 
-        // Create a span element for the main number
-        const mainNumberSpan = document.createElement('span');
-        mainNumberSpan.textContent = `${priceWithoutTax}`;
-        mainNumberSpan.style.fontSize = '128px'; // Double font size for the first price line
+                // Create a span element for the main number
+                const mainNumberSpan = document.createElement('span');
+                mainNumberSpan.textContent = `${priceWithoutTax}`;
+                mainNumberSpan.style.fontSize = '128px'; // Double font size for the first price line
 
-        // Append the main number and unit to the list item
-        listItem.appendChild(mainNumberSpan);
-        listItem.appendChild(unitSpan);
-    } else {
-        // For other lines, display only the time part of DateTime
-        const time = entry.DateTime.split('T')[1].split('+')[0].slice(0, -3); // Remove seconds
-        const formattedPrice = entry.PriceWithTax.toFixed(2);
-        listItem.textContent = `${time} ${formattedPrice}`;
-    }
+                // Append the main number and unit to the list item
+                listItem.appendChild(mainNumberSpan);
+                listItem.appendChild(unitSpan);
+            } else {
+                // For other lines, display only the time part of DateTime
+                const time = entry.DateTime.split('T')[1].split('+')[0].slice(0, -3); // Remove seconds
+                const formattedPrice = entry.PriceWithTax.toFixed(2);
+                listItem.textContent = `${time} ${formattedPrice}`;
+            }
 
-    // Set font color based on conditions
-    if (entry.PriceWithTax > 0.07) {
-        listItem.style.color = 'orange';
+            // Set font color based on conditions
+            if (entry.PriceWithTax > 0.07) {
+                listItem.style.color = 'orange';
 
-        if (entry.PriceWithTax > 0.18) {
-            listItem.style.color = 'red';
-        }
-    } else if (entry.PriceWithTax < 0.03) {
-        listItem.style.color = 'green';
-    }
+                if (entry.PriceWithTax > 0.18) {
+                    listItem.style.color = 'red';
+                }
+            } else if (entry.PriceWithTax < 0.03) {
+                listItem.style.color = 'green';
+            }
 
-    // Set font weight
-    listItem.style.fontWeight = 'bold';
+            // Set font weight
+            listItem.style.fontWeight = 'bold';
 
-    priceListElement.appendChild(listItem);
-});
+            priceListElement.appendChild(listItem);
+        });
 
     }
 
@@ -140,13 +142,5 @@ relevantPrices.forEach((entry, index) => {
     };
 </script>
 
-
-
-
 </body>
 </html>
-
-
-
-
-
