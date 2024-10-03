@@ -1,7 +1,7 @@
 
 # Pörssisähkö
 
-Yksinkertainen verkkosivu, joka näyttää reaaliaikaisen ja verollisen pörssisähkön hinnan, sekä tulevat tunnit, joista hintatieto on saatavilla. Verkkosivun toiminta perustuu spot-hinta.fi -sovellusrajapintaan.
+Yksinkertainen verkkosivu, joka näyttää reaaliaikaisen ja verollisen pörssisähkön hinnan, sekä tulevat tunnit, joista hintatieto on saatavilla. Verkkosivun toiminta perustuu spot-hinta.fi -ohjelmointirajapintaan.
 
 
 
@@ -24,4 +24,4 @@ Hinnat ovat selkeyden vuoksi värikoodattu:
 ⚪ Alle 7snt/kWh
 🟢 Alle 3snt/kWh
 ```
-Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika. Verkkosivu päivittyy automaattisesti minuutin välein.
+Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika. Verkkosivu päivittyy automaattisesti minuutin välein. Seuraavaksi alkavan vuorokauden sähkön tuntihinnat tulevat verkkosivulle näkyviin kello 15:een mennessä.
