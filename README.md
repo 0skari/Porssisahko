@@ -25,3 +25,10 @@ Hinnat ovat selkeyden vuoksi värikoodattu:
 🟢 Alle 3snt/kWh
 ```
 Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika. Verkkosivu päivittyy automaattisesti minuutin välein. Seuraavaksi alkavan vuorokauden sähkön tuntihinnat tulevat verkkosivulle näkyviin kello 15:een mennessä.
+
+
+```
+```
+![Kuvakaappaus sivusta.](https://raw.githubusercontent.com/0skari/Porssisahko/refs/heads/main/Screenshot_2024-05-12-15-57-56.png)
+```
+```
