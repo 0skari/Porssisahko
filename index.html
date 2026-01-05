@@ -1,4 +1,4 @@
-<!-- Versio 2.3.5 -->
+<!-- Versio 2.3.6 -->
 
 <!DOCTYPE html>
 <html lang="fi">
@@ -17,12 +17,21 @@
         #priceList {
             list-style-type: none; /* Ei bullet point listausta */
             padding: 0; /* Ei reunusta */
-            letter-spacing: 0.32em;
-            font-size: 12px;
+            letter-spacing: 0.96em;
+            font-size: 6px;
         }
         #priceList li:first-child {
             font-size: 36px; /* Ensimmäisen rivin kirjasinkoko */
         }
+
+        /* Listan tasatuntien tyyleille CSS-luokka */
+        .tasatunti {
+			list-style-type: none; /* Ei bullet point listausta */
+            padding: 0; /* Ei reunusta */
+            letter-spacing: 0.42em;
+            font-size: 10px;        
+		}
+
     </style>
 </head>
 <body>
@@ -84,6 +93,12 @@
                 const time = entry.DateTime.split('T')[1].split('+')[0].slice(0, -3); // Filtteröidään sekunnit pois
                 const formattedPrice = entry.PriceWithTax.toFixed(2);
                 listItem.textContent = `${time} ${formattedPrice}`;
+
+                // Tarkistetaan onko tasatunti ja jos on käytetään sille omaa css-luokkaa (ei vaikuta isoon numeroon sivun alussa)
+                const minutes = time.split(':')[1];
+                if (minutes === '00') {
+                    listItem.classList.add('tasatunti');
+                }
             }
 
             // Asetetaan värit sähkön hinnan mukaan
