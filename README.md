@@ -11,7 +11,7 @@ https://sähkö.pinarbo.org/
 
 ## Tuki
 
-Verkkosivu tukee yleisimpiä uudenaikaisia selainohjelmistoja, kuten Google Chromea, Firefoxia sekä Microsoft Edgeä. Jos sinulla on kehitysehdotus, jolla voisimme parantaa käyttäjäkokemusta, kerro siitä tämän Github -projektin [Issues](https://github.com/0skari/Porssisahko/issues) -osiossa.
+Verkkosivu tukee yleisimpiä uudenaikaisia selainohjelmistoja, kuten Google Chromea, Firefoxia sekä Microsoft Edgeä. Jos sinulla on kehitysehdotus, jolla voisimme parantaa käyttäjäkokemusta, kerro siitä tämän Github-projektin [Issues](https://github.com/0skari/Porssisahko/issues) -osiossa.
 
 ## Toiminta
 Suurimmalla kirjasimella sivun yläosassa on reaaliaikainen, tämän hetkinen sähkönhinta (snt/kWh). Tämän alapuolella on tulevien tuntien kellonajat, joiden yhteydessä sähkönhinnat (eur/kWh).
