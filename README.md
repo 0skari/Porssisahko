@@ -24,7 +24,7 @@ Hinnat ovat selkeyden vuoksi värikoodattu:
 ⚪ Alle 7snt/kWh
 🟢 Alle 3snt/kWh
 ```
-Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika. Verkkosivu päivittyy automaattisesti kahden minuutin välein. Seuraavaksi alkavan vuorokauden sähkön tuntihinnat tulevat verkkosivulle näkyviin kello 15:een mennessä.
+Verkkosivun alareunassa näkyy päivämäärä sekä kellonaika. Verkkosivu päivittyy automaattisesti kahden minuutin välein. Seuraavaksi alkavan vuorokauden sähkön hinnat tulevat verkkosivulle näkyviin kello 15:een mennessä.
 
 
 ```
